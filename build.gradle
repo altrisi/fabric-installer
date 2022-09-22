@@ -26,10 +26,6 @@ graalvmNative {
     }
 }
 
-application {
-  mainClass = 'net.fabricmc.installer.Main'
-}
-
 repositories {
 	maven {
 		name = 'Fabric'
