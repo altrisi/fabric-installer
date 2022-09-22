@@ -12,7 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
-      - uses: DeLaGuardo/setup-graalvm@5.0
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          version: 'latest'
+          java-version: '17'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew build --stacktrace
       - run: ./gradlew nativeCompile --stacktrace
       - uses: actions/upload-artifact@v2
