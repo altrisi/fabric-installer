@@ -12,7 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
+      - uses: DeLaGuardo/setup-graalvm@5.0
       - run: ./gradlew build --stacktrace
+      - run: ./gradlew nativeCompile --stacktrace
       - uses: actions/upload-artifact@v2
         with:
           name: Artifacts
