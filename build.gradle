@@ -16,6 +16,16 @@ archivesBaseName = "fabric-installer"
 def ENV = System.getenv()
 version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
 
+graalvmNative {
+    binaries {
+        main {
+            // Main options
+            imageName = 'Fabric Loader' // The name of the native image, defaults to the project name
+            mainClass = 'net.fabricmc.installer.Main' // The main class to use, defaults to the application.mainClass
+	}
+    }
+}
+
 application {
   mainClass = 'net.fabricmc.installer.Main'
 }
