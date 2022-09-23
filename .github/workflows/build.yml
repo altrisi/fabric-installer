@@ -2,23 +2,14 @@ name: Build
 on: [push, pull_request]
 jobs:
   build:
-    strategy:
-      matrix:
-        java: [8-jdk, 11-jdk, 16-jdk, 17-jdk]
-    runs-on: ubuntu-20.04
-    container:
-      image: openjdk:${{ matrix.java }}
-      options: --user root
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
-      - run: apt-get install build-essential libz-dev zlib1g-dev
-      - uses: graalvm/setup-graalvm@v1
+      - uses: helpermethod/graalvm-native-image-toolchain@0.0.2
         with:
-          version: 'latest'
+          version: '21.2.0'
           java-version: '17'
-          components: 'native-image'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew build --stacktrace
       - run: ./gradlew nativeCompile --stacktrace
       - uses: actions/upload-artifact@v2
