@@ -10,8 +10,8 @@ jobs:
         with:
           graalvm-version: '22.2.0'
           java-version: '17'
-      - run: ./gradlew build --stacktrace
-      - run: ./gradlew nativeCompile --stacktrace
+      - run: ./gradlew build
+      - run: ./gradlew nativeCompile
       - uses: actions/upload-artifact@v2
         with:
           name: Artifacts
