@@ -2,7 +2,10 @@ name: Build
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
@@ -14,5 +17,5 @@ jobs:
       - run: ./gradlew nativeCompile
       - uses: actions/upload-artifact@v2
         with:
-          name: Artifacts
+          name: Artifacts-${{ matrix.os }}
           path: build/native/
