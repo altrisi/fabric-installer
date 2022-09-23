@@ -8,7 +8,7 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1
       - uses: helpermethod/graalvm-native-image-toolchain@0.0.2
         with:
-          version: '21.2.0'
+          graalvm-version: '21.2.0'
           java-version: '17'
       - run: ./gradlew build --stacktrace
       - run: ./gradlew nativeCompile --stacktrace
