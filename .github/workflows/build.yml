@@ -11,7 +11,7 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1
       - uses: helpermethod/graalvm-native-image-toolchain@0.0.2
         with:
-          graalvm-version: '22.2.0'
+          graalvm-version: '22.3.3'
           java-version: '17'
       - run: ./gradlew build
       - run: ./gradlew nativeCompile
